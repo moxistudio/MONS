@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="MONS">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#0D0D0D">
-    <meta name="description" content="MONS极简设计 - 轻松制作小红书封面、抖音封面、朋友圈图片">
     <title>MONS - 极简设计</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230D0D0D' width='100' height='100' rx='18'/><text x='50' y='68' text-anchor='middle' fill='white' font-size='45' font-weight='bold' font-family='Georgia,serif'>M</text></svg>">
@@ -24,27 +19,28 @@
             --bg-primary: #0D0D0D;
             --bg-secondary: #1A1A1A;
             --bg-tertiary: #252525;
-            --bg-card: rgba(26,26,26,0.98);
-            --border-subtle: rgba(255,255,255,0.06);
-            --border-medium: rgba(255,255,255,0.12);
+            --bg-workspace: #2a2a2a;
+            --bg-card: rgba(30,30,30,0.95);
+            --border-subtle: rgba(255,255,255,0.08);
+            --border-medium: rgba(255,255,255,0.15);
             --text-primary: #FFFFFF;
             --text-secondary: rgba(255,255,255,0.7);
             --text-muted: rgba(255,255,255,0.45);
-            --accent: #FFFFFF;
-            --accent-line: #FF6B6B;
-            --success: #4CAF50;
-            --error: #ff5252;
+            --accent: #4A90D9;
+            --accent-hover: #5BA0E9;
+            --success: #34C759;
+            --error: #FF3B30;
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 20px;
-            --font-sans: 'Noto Sans SC', 'PingFang SC', -apple-system, sans-serif;
-            --font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', Georgia, serif;
+            --font-sans: 'Noto Sans SC', -apple-system, sans-serif;
+            --font-serif: 'Noto Serif SC', Georgia, serif;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; -webkit-touch-callout:none; -webkit-font-smoothing: antialiased; }
-        html,body { height:100%; overflow:hidden; position:fixed; width:100%; overscroll-behavior:none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { height: 100%; overflow: hidden; position: fixed; width: 100%; }
         
         body {
             background: var(--bg-primary);
@@ -56,229 +52,297 @@
         }
 
         .loading-screen {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--bg-primary);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 9999; transition: opacity 0.5s ease-out;
+            position: fixed; inset: 0; background: var(--bg-primary);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999; transition: opacity 0.4s;
         }
         .loading-screen.hide { opacity: 0; pointer-events: none; }
-        .loading-logo { font-size: 32px; font-weight: 700; letter-spacing: 8px; margin-bottom: 16px; }
-        .loading-text { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
-        .loading-spinner { width: 24px; height: 24px; border: 2px solid var(--border-medium); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-logo { font-size: 36px; font-weight: 700; letter-spacing: 10px; }
 
         .header {
-            height: 50px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle);
-            display: flex; align-items: center; justify-content: space-between; padding: 0 12px; flex-shrink: 0; z-index: 100;
+            height: 52px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 16px; flex-shrink: 0; z-index: 100;
         }
-        .brand { font-size: 16px; font-weight: 600; letter-spacing: 4px; }
-        .header-actions { display: flex; gap: 8px; align-items: center; }
-        .btn { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-medium); padding: 8px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 6px; min-height: 40px; }
-        .btn:active { transform: scale(0.95); background: var(--bg-tertiary); }
-        .btn-primary { background: var(--accent); color: var(--bg-primary); border: none; }
-        .btn-icon { width: 40px; height: 40px; padding: 0; justify-content: center; border-radius: 50%; }
+        .brand { font-size: 17px; font-weight: 600; letter-spacing: 5px; }
+        .header-actions { display: flex; gap: 10px; align-items: center; }
+        
+        .btn {
+            background: transparent; color: var(--text-secondary); border: 1px solid var(--border-medium);
+            padding: 0 16px; height: 38px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500;
+            cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 8px;
+        }
+        .btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .btn:active { transform: scale(0.96); }
+        .btn-primary { background: var(--accent); color: white; border: none; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-icon { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; font-size: 14px; }
 
-        .scene-bar { display: flex; gap: 8px; padding: 10px 12px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); overflow-x: auto; -webkit-overflow-scrolling: touch; flex-shrink: 0; scrollbar-width: none; }
+        .scene-bar {
+            display: flex; gap: 10px; padding: 12px 16px; background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-subtle); overflow-x: auto; flex-shrink: 0;
+        }
         .scene-bar::-webkit-scrollbar { display: none; }
-        .scene-btn { flex-shrink: 0; padding: 10px 16px; background: var(--bg-tertiary); border: none; border-radius: 100px; color: var(--text-secondary); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; white-space: nowrap; display: flex; align-items: center; gap: 6px; min-height: 40px; }
-        .scene-btn.active { background: var(--accent); color: var(--bg-primary); }
-        .scene-btn:active { transform: scale(0.95); }
-        .scene-btn .arrow { font-size: 10px; margin-left: 2px; opacity: 0.7; }
-
-        .template-panel { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg-primary); z-index: 300; display: none; flex-direction: column; }
-        .template-panel.show { display: flex; }
-        .template-panel-header { padding: 16px; padding-top: calc(16px + var(--safe-top)); background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; }
-        .template-panel-title { font-size: 17px; font-weight: 600; }
-        .template-panel-close { width: 40px; height: 40px; background: var(--bg-tertiary); border: none; border-radius: 50%; color: var(--text-secondary); font-size: 16px; cursor: pointer; }
-        .template-panel-content { flex: 1; overflow-y: auto; padding: 16px; -webkit-overflow-scrolling: touch; }
-        .template-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .tpl-card { aspect-ratio: 3/4; border-radius: var(--radius-md); overflow: hidden; cursor: pointer; position: relative; border: 2px solid transparent; transition: all 0.15s; background: var(--bg-tertiary); min-height: 110px; }
-        .tpl-card:active { transform: scale(0.96); }
-        .tpl-preview { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 12px; line-height: 1.4; text-align: center; padding: 10px; }
-        .tpl-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; font-size: 11px; text-align: center; }
+        .scene-btn {
+            flex-shrink: 0; padding: 10px 18px; background: var(--bg-tertiary); border: none;
+            border-radius: 100px; color: var(--text-secondary); font-size: 13px; font-weight: 500;
+            cursor: pointer; transition: all 0.15s;
+        }
+        .scene-btn:hover { background: var(--border-medium); }
+        .scene-btn.active { background: var(--accent); color: white; }
 
         .workspace {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            background: #0a0a0a;
-            background-image: linear-gradient(45deg, #151515 25%, transparent 25%), linear-gradient(-45deg, #151515 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #151515 75%), linear-gradient(-45deg, transparent 75%, #151515 75%);
-            background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-            position: relative; overflow: hidden; touch-action: none;
+            flex: 1; position: relative; overflow: hidden;
+            background: var(--bg-workspace);
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.015) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,0.015) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.015) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.015) 75%);
+            background-size: 24px 24px;
         }
-        .canvas-container { box-shadow: 0 10px 50px rgba(0,0,0,0.6); }
+        
+        .workspace.tool-hand { cursor: grab; }
+        .workspace.tool-hand.dragging { cursor: grabbing; }
+        .workspace.tool-select { cursor: default; }
+        .workspace.tool-add { cursor: crosshair; }
 
-        .canvas-controls { 
-            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); 
-            background: var(--bg-card); backdrop-filter: blur(10px);
-            border: 1px solid var(--border-medium); border-radius: 100px; 
-            padding: 6px 14px; display: flex; align-items: center; gap: 6px; z-index: 60; 
+        .canvas-box {
+            position: absolute;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.5);
         }
-        .canvas-ctrl-btn { 
-            width: 36px; height: 36px; border-radius: 50%; background: transparent; border: none; 
-            color: var(--text-secondary); font-size: 14px; cursor: pointer; 
+        
+        .workspace.tool-hand .canvas-box,
+        .workspace.tool-add .canvas-box { pointer-events: none; }
+
+        .zoom-bar {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--bg-card); backdrop-filter: blur(16px);
+            border: 1px solid var(--border-medium); border-radius: 100px;
+            padding: 5px 14px; display: flex; align-items: center; gap: 6px; z-index: 60;
+        }
+        .zoom-btn {
+            width: 32px; height: 32px; border-radius: 50%; background: transparent; border: none;
+            color: var(--text-secondary); font-size: 12px; cursor: pointer;
             display: flex; align-items: center; justify-content: center; transition: all 0.15s;
         }
-        .canvas-ctrl-btn:active { transform: scale(0.9); background: var(--bg-tertiary); }
-        .canvas-ctrl-btn.active { color: var(--accent); background: rgba(255,255,255,0.1); }
-        .zoom-display { min-width: 54px; text-align: center; font-size: 13px; color: var(--text-secondary); font-weight: 500; cursor: pointer; padding: 6px 4px; border-radius: 6px; }
-        .zoom-display:active { background: var(--bg-tertiary); }
-        .ctrl-divider { width: 1px; height: 24px; background: var(--border-medium); margin: 0 4px; }
+        .zoom-btn:hover { background: var(--bg-tertiary); color: var(--accent); }
+        .zoom-btn:active { transform: scale(0.9); }
+        .zoom-val {
+            min-width: 48px; text-align: center; font-size: 12px; color: var(--text-secondary);
+            cursor: pointer; padding: 6px; border-radius: 6px;
+        }
+        .zoom-val:hover { background: var(--bg-tertiary); }
+        .zoom-sep { width: 1px; height: 20px; background: var(--border-medium); }
 
-        .guide-line { position: absolute; background: var(--accent-line); z-index: 50; pointer-events: none; opacity: 0; transition: opacity 0.1s; }
-        .guide-line.show { opacity: 0.8; }
-        .guide-line.horizontal { height: 1px; left: 0; right: 0; }
-        .guide-line.vertical { width: 1px; top: 0; bottom: 0; }
-
-        .smart-toolbar { 
-            position: fixed; bottom: calc(140px + var(--safe-bottom)); left: 50%; 
-            transform: translateX(-50%) translateY(20px); 
-            background: var(--bg-card); backdrop-filter: blur(10px);
-            border: 1px solid var(--border-medium); border-radius: 16px; 
-            padding: 8px 12px; display: flex; align-items: center; gap: 4px; z-index: 95; 
-            opacity: 0; pointer-events: none; 
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); 
-            max-width: 96vw; flex-wrap: wrap; justify-content: center; 
+        .smart-toolbar {
+            position: fixed; bottom: calc(90px + var(--safe-bottom)); left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--bg-card); backdrop-filter: blur(16px);
+            border: 1px solid var(--border-medium); border-radius: 14px;
+            padding: 8px 12px; display: flex; align-items: center; gap: 4px; z-index: 95;
+            opacity: 0; pointer-events: none; transition: all 0.2s;
         }
         .smart-toolbar.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
-        .tool-group { display: flex; align-items: center; gap: 3px; }
-        .tool-divider { width: 1px; height: 28px; background: var(--border-medium); margin: 0 6px; }
-        .tool-btn { 
-            min-width: 44px; height: 44px; border-radius: 10px; background: transparent; border: none; 
-            color: var(--text-secondary); font-size: 15px; cursor: pointer; transition: all 0.15s; 
-            display: flex; align-items: center; justify-content: center; padding: 0 10px; 
+        
+        .tool-btn {
+            min-width: 38px; height: 38px; border-radius: 8px; background: transparent; border: none;
+            color: var(--text-secondary); font-size: 14px; cursor: pointer; transition: all 0.15s;
+            display: flex; align-items: center; justify-content: center;
         }
-        .tool-btn:active { transform: scale(0.9); background: var(--bg-tertiary); }
-        .tool-btn.danger:active { background: rgba(255,82,82,0.3); color: var(--error); }
+        .tool-btn:hover { background: var(--bg-tertiary); color: var(--accent); }
+        .tool-btn:active { transform: scale(0.92); }
+        .tool-btn.danger:hover { background: rgba(255,59,48,0.15); color: var(--error); }
+        .tool-sep { width: 1px; height: 24px; background: var(--border-medium); margin: 0 4px; }
 
-        .mini-color { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; }
-        .mini-color:active { transform: scale(0.85); }
-        .mini-color.selected { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(255,255,255,0.2); }
-        .mini-color.picker { background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red); position: relative; }
-        .mini-color.picker::after { content: '+'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 18px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        .font-sel { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 0 8px; height: 32px; border-radius: 6px; font-size: 11px; }
+        .size-box { display: flex; align-items: center; background: var(--bg-tertiary); border-radius: 6px; padding: 2px; }
+        .size-btn { width: 24px; height: 24px; border-radius: 4px; background: transparent; border: none; color: var(--text-secondary); font-size: 12px; cursor: pointer; }
+        .size-btn:hover { background: var(--bg-secondary); }
+        .size-val { min-width: 32px; text-align: center; font-size: 11px; color: var(--text-primary); cursor: pointer; }
 
-        .font-select { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 8px 10px; border-radius: 8px; font-size: 12px; cursor: pointer; min-width: 60px; height: 36px; }
-        .size-control { display: flex; align-items: center; background: var(--bg-tertiary); border-radius: 8px; padding: 3px; height: 36px; }
-        .size-btn { width: 30px; height: 30px; border-radius: 6px; background: transparent; border: none; color: var(--text-secondary); font-size: 16px; cursor: pointer; }
-        .size-btn:active { transform: scale(0.9); background: var(--bg-secondary); }
-        .size-value { min-width: 40px; text-align: center; font-size: 12px; color: var(--text-primary); cursor: pointer; padding: 6px 4px; border-radius: 6px; font-weight: 500; }
-        .size-value:active { background: var(--bg-secondary); }
-
-        .dock { 
-            position: fixed; bottom: 0; left: 0; right: 0; 
-            background: var(--bg-card); backdrop-filter: blur(10px);
-            border-top: 1px solid var(--border-subtle); 
-            padding: 10px 12px; padding-bottom: calc(10px + var(--safe-bottom)); 
-            display: flex; justify-content: space-around; align-items: center; z-index: 90; 
+        .color-row { display: flex; gap: 4px; margin-left: 6px; }
+        .color-dot {
+            width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+            border: 2px solid transparent; transition: all 0.15s;
         }
-        .dock-item { 
-            display: flex; flex-direction: column; align-items: center; gap: 4px; 
-            padding: 10px 14px; border-radius: var(--radius-md); cursor: pointer; 
-            transition: all 0.15s; color: var(--text-muted); min-width: 60px; min-height: 54px; 
+        .color-dot:hover { transform: scale(1.15); }
+        .color-dot.sel { border-color: white; }
+        .color-dot.picker { background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red); }
+
+        .dock {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--bg-card); backdrop-filter: blur(16px);
+            border-top: 1px solid var(--border-subtle);
+            padding: 8px 16px; padding-bottom: calc(8px + var(--safe-bottom));
+            display: flex; justify-content: center; gap: 6px; z-index: 90;
         }
-        .dock-item:active { transform: scale(0.92); background: var(--bg-tertiary); }
+        .dock-item {
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            padding: 10px 18px; border-radius: var(--radius-md); cursor: pointer;
+            color: var(--text-muted); transition: all 0.15s; position: relative;
+        }
+        .dock-item:hover { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .dock-item:active { transform: scale(0.95); }
+        .dock-item.active { color: var(--accent); background: rgba(74,144,217,0.15); }
         .dock-item i { font-size: 20px; }
-        .dock-item span { font-size: 11px; font-weight: 500; }
+        .dock-item span { font-size: 10px; font-weight: 500; }
 
-        .bottom-panel { 
-            position: fixed; bottom: 0; left: 0; right: 0; 
-            background: var(--bg-secondary); border-radius: var(--radius-lg) var(--radius-lg) 0 0; 
-            z-index: 150; transform: translateY(100%); 
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); 
-            max-height: 65vh; display: flex; flex-direction: column; 
+        .add-popup {
+            position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+            background: var(--bg-card); backdrop-filter: blur(16px);
+            border: 1px solid var(--border-medium); border-radius: var(--radius-md);
+            padding: 6px; margin-bottom: 10px; display: none; flex-direction: column; gap: 2px;
+            min-width: 110px;
         }
-        .bottom-panel.show { transform: translateY(0); }
-        .panel-header { padding: 16px 18px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-        .panel-title { font-size: 16px; font-weight: 600; }
-        .panel-close { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-tertiary); border: none; color: var(--text-secondary); font-size: 14px; cursor: pointer; }
-        .panel-content { flex: 1; overflow-y: auto; padding: 16px 18px; padding-bottom: calc(16px + var(--safe-bottom)); -webkit-overflow-scrolling: touch; }
-
-        .section { margin-bottom: 24px; }
-        .section-label { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
-        .view-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .view-btn { 
-            padding: 14px 12px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle); 
-            border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 12px; cursor: pointer; 
-            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; 
-            min-height: 70px; transition: all 0.15s;
+        .add-popup.show { display: flex; }
+        .add-item {
+            display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            border-radius: var(--radius-sm); cursor: pointer; color: var(--text-secondary);
+            transition: all 0.15s; font-size: 13px;
         }
-        .view-btn i { font-size: 18px; }
-        .view-btn:active { transform: scale(0.96); background: var(--bg-secondary); }
+        .add-item:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .add-item i { width: 18px; text-align: center; }
 
-        .bg-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-        .bg-item { width: 52px; height: 52px; border-radius: 12px; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; }
-        .bg-item:active { transform: scale(0.9); }
-        .bg-item.selected { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(255,255,255,0.15); }
-
-        .export-options { display: flex; flex-direction: column; gap: 12px; }
-        .export-option { 
-            padding: 16px 18px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle); 
-            border-radius: var(--radius-md); cursor: pointer; display: flex; justify-content: space-between; 
-            align-items: center; min-height: 70px; transition: all 0.15s;
+        .overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 140;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
-        .export-option:active { transform: scale(0.98); background: var(--bg-secondary); }
-        .export-option-info h4 { font-size: 15px; margin-bottom: 4px; }
-        .export-option-info p { font-size: 12px; color: var(--text-muted); }
-        .export-option-badge { padding: 5px 12px; background: var(--bg-secondary); border-radius: 100px; font-size: 11px; color: var(--text-secondary); font-weight: 500; }
-
-        .layer-item { 
-            display: flex; align-items: center; padding: 14px; background: var(--bg-tertiary); 
-            border-radius: var(--radius-sm); margin-bottom: 10px; cursor: pointer; min-height: 56px; transition: all 0.15s;
-        }
-        .layer-item:active { transform: scale(0.98); }
-        .layer-item.active { background: rgba(255,255,255,0.08); border: 1px solid var(--border-medium); }
-        .layer-icon { margin-right: 12px; color: var(--text-muted); font-size: 16px; }
-        .layer-name { flex: 1; font-size: 14px; }
-        .layer-delete { background: none; border: none; color: var(--text-muted); padding: 10px; cursor: pointer; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
-        .layer-delete:active { background: rgba(255,82,82,0.2); color: var(--error); }
-
-        .overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 140; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .overlay.show { opacity: 1; pointer-events: auto; }
 
-        .toast { 
-            position: fixed; top: calc(75px + var(--safe-top)); left: 50%; 
-            transform: translateX(-50%) translateY(-15px); 
-            background: var(--bg-card); backdrop-filter: blur(10px);
-            color: var(--text-primary); padding: 12px 20px; border-radius: 100px; 
-            font-size: 14px; z-index: 500; opacity: 0; pointer-events: none; 
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid var(--border-medium); 
+        .panel {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--bg-secondary); border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            z-index: 150; transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 65vh; display: flex; flex-direction: column;
         }
-        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-        .toast.error { border-color: var(--error); }
-        .toast.success { border-color: var(--success); }
-
-        .hidden-input { display: none; }
-
-        .color-extract-btn { 
-            width: 100%; padding: 14px; background: var(--bg-tertiary); 
-            border: 1px dashed var(--border-medium); border-radius: var(--radius-sm); 
-            color: var(--text-secondary); font-size: 13px; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; 
+        .panel.show { transform: translateY(0); }
+        .panel-head {
+            padding: 16px 20px; border-bottom: 1px solid var(--border-subtle);
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .color-extract-btn:active { background: var(--bg-secondary); }
-        .extracted-colors { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+        .panel-title { font-size: 16px; font-weight: 600; }
+        .panel-close {
+            width: 34px; height: 34px; border-radius: 50%; background: var(--bg-tertiary);
+            border: none; color: var(--text-secondary); font-size: 14px; cursor: pointer;
+        }
+        .panel-close:hover { background: var(--border-medium); }
+        .panel-body { flex: 1; overflow-y: auto; padding: 16px 20px; padding-bottom: calc(16px + var(--safe-bottom)); }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 400; display: none; align-items: center; justify-content: center; }
-        .modal-overlay.show { display: flex; }
+        .section { margin-bottom: 20px; }
+        .section-label { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        .bg-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .bg-item {
+            width: 46px; height: 46px; border-radius: 10px; cursor: pointer;
+            border: 2px solid transparent; transition: all 0.15s;
+        }
+        .bg-item:hover { transform: scale(1.08); }
+        .bg-item.sel { border-color: white; }
+
+        .export-list { display: flex; flex-direction: column; gap: 10px; }
+        .export-item {
+            padding: 14px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md); cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .export-item:hover { border-color: var(--accent); }
+        .export-item h4 { font-size: 14px; margin-bottom: 2px; }
+        .export-item p { font-size: 11px; color: var(--text-muted); }
+        .export-badge { padding: 4px 10px; background: var(--bg-secondary); border-radius: 100px; font-size: 10px; color: var(--text-secondary); }
+        .export-item.rec .export-badge { background: var(--accent); color: white; }
+
+        .layer-item {
+            display: flex; align-items: center; padding: 12px 14px; background: var(--bg-tertiary);
+            border-radius: var(--radius-sm); margin-bottom: 8px; cursor: pointer;
+        }
+        .layer-item:hover { background: var(--border-medium); }
+        .layer-item.active { background: rgba(74,144,217,0.2); border: 1px solid rgba(74,144,217,0.4); }
+        .layer-icon { margin-right: 12px; color: var(--text-muted); font-size: 14px; }
+        .layer-name { flex: 1; font-size: 13px; }
+        .layer-del { background: none; border: none; color: var(--text-muted); padding: 8px; cursor: pointer; border-radius: 6px; }
+        .layer-del:hover { background: rgba(255,59,48,0.15); color: var(--error); }
+
+        .tpl-panel {
+            position: fixed; inset: 0; background: var(--bg-primary); z-index: 300;
+            display: none; flex-direction: column;
+        }
+        .tpl-panel.show { display: flex; }
+        .tpl-head {
+            padding: 16px 20px; padding-top: calc(16px + var(--safe-top));
+            background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .tpl-title { font-size: 17px; font-weight: 600; }
+        .tpl-close {
+            width: 40px; height: 40px; background: var(--bg-tertiary); border: none;
+            border-radius: 50%; color: var(--text-secondary); font-size: 15px; cursor: pointer;
+        }
+        .tpl-body { flex: 1; overflow-y: auto; padding: 16px; }
+        .tpl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        
+        .tpl-card {
+            aspect-ratio: 3/4; border-radius: var(--radius-md); overflow: hidden;
+            cursor: pointer; position: relative; background: var(--bg-tertiary);
+            border: 2px solid transparent; transition: all 0.15s;
+        }
+        .tpl-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .tpl-preview {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; padding: 14px;
+        }
+        .tpl-img {
+            width: 55%; height: 32%; background: linear-gradient(135deg, #e0e0e0, #c8c8c8);
+            border-radius: 4px; margin-bottom: 10px; display: flex; align-items: center;
+            justify-content: center; font-size: 20px;
+        }
+        .tpl-text { font-size: 11px; font-weight: 600; text-align: center; }
+        .tpl-name {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 10px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white; font-size: 12px; text-align: center;
+        }
+
+        .modal-bg {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 400;
+            display: none; align-items: center; justify-content: center;
+        }
+        .modal-bg.show { display: flex; }
         .modal { background: var(--bg-secondary); padding: 24px; border-radius: var(--radius-lg); min-width: 260px; }
         .modal-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; text-align: center; }
-        .modal input { background: var(--bg-tertiary); border: 1px solid var(--border-medium); color: var(--text-primary); padding: 14px; border-radius: var(--radius-sm); font-size: 20px; text-align: center; width: 100%; margin-bottom: 16px; }
+        .modal input {
+            background: var(--bg-tertiary); border: 1px solid var(--border-medium);
+            color: var(--text-primary); padding: 14px; border-radius: var(--radius-sm);
+            font-size: 20px; text-align: center; width: 100%; margin-bottom: 16px;
+        }
+        .modal input:focus { outline: none; border-color: var(--accent); }
         .modal-btns { display: flex; gap: 10px; }
-        .modal-btns button { flex: 1; padding: 12px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 15px; font-weight: 500; }
-        .modal-btns .btn-cancel { background: var(--bg-tertiary); color: var(--text-secondary); }
-        .modal-btns .btn-confirm { background: var(--accent); color: var(--bg-primary); }
+        .modal-btns button { flex: 1; padding: 12px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 14px; }
+        .modal-btns .m-cancel { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .modal-btns .m-ok { background: var(--accent); color: white; }
+
+        .toast {
+            position: fixed; top: calc(68px + var(--safe-top)); left: 50%;
+            transform: translateX(-50%) translateY(-16px);
+            background: var(--bg-card); backdrop-filter: blur(16px);
+            color: var(--text-primary); padding: 12px 22px; border-radius: 100px;
+            font-size: 14px; z-index: 500; opacity: 0; pointer-events: none;
+            transition: all 0.3s; border: 1px solid var(--border-medium);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+        .toast.success { background: var(--success); border-color: var(--success); }
+
+        .hidden { display: none; }
 
         @media (min-width: 768px) {
-            .dock { max-width: 420px; left: 50%; transform: translateX(-50%); bottom: 20px; border-radius: 100px; border: 1px solid var(--border-subtle); }
-            .smart-toolbar { bottom: calc(160px + var(--safe-bottom)); }
-            .canvas-controls { bottom: 90px; }
+            .dock { max-width: 380px; left: 50%; transform: translateX(-50%); bottom: 20px; border-radius: 100px; border: 1px solid var(--border-subtle); }
+            .tpl-grid { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
 
 <body>
-    <div class="loading-screen" id="loadingScreen">
+    <div class="loading-screen" id="loading">
         <div class="loading-logo">MONS</div>
-        <div class="loading-text">正在加载设计工具...</div>
-        <div class="loading-spinner"></div>
     </div>
 
     <header class="header">
@@ -286,517 +350,706 @@
         <div class="header-actions">
             <button class="btn btn-icon" onclick="undo()" title="撤销"><i class="fas fa-undo"></i></button>
             <button class="btn btn-icon" onclick="redo()" title="重做"><i class="fas fa-redo"></i></button>
-            <button class="btn btn-primary" onclick="showPanel('export')"><i class="fas fa-download"></i><span>导出</span></button>
+            <button class="btn btn-icon" onclick="toggleFullscreen()" title="全屏"><i class="fas fa-expand" id="fsIcon"></i></button>
+            <button class="btn btn-primary" onclick="showPanel('export')"><i class="fas fa-download"></i> 导出</button>
         </div>
     </header>
 
     <div class="scene-bar" id="sceneBar"></div>
 
-    <main class="workspace" id="workspace">
-        <canvas id="c"></canvas>
-        <div class="guide-line horizontal" id="guideH"></div>
-        <div class="guide-line vertical" id="guideV"></div>
-        
-        <div class="canvas-controls">
-            <button class="canvas-ctrl-btn" onclick="zoomOut()" title="缩小"><i class="fas fa-minus"></i></button>
-            <div class="zoom-display" id="zoomDisplay" onclick="fitToScreen()" title="点击适合屏幕">100%</div>
-            <button class="canvas-ctrl-btn" onclick="zoomIn()" title="放大"><i class="fas fa-plus"></i></button>
-            <div class="ctrl-divider"></div>
-            <button class="canvas-ctrl-btn" onclick="fitToScreen()" title="适合屏幕"><i class="fas fa-compress-arrows-alt"></i></button>
-            <button class="canvas-ctrl-btn" onclick="actualSize()" title="实际大小"><i class="fas fa-search"></i></button>
-            <div class="ctrl-divider"></div>
-            <button class="canvas-ctrl-btn" id="panModeBtn" onclick="togglePanMode()" title="平移模式"><i class="fas fa-hand-paper"></i></button>
+    <main class="workspace tool-hand" id="workspace">
+        <div class="canvas-box" id="canvasBox">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="zoom-bar">
+            <button class="zoom-btn" onclick="zoomOut()"><i class="fas fa-minus"></i></button>
+            <div class="zoom-val" id="zoomVal" onclick="fitToScreen()">50%</div>
+            <button class="zoom-btn" onclick="zoomIn()"><i class="fas fa-plus"></i></button>
+            <div class="zoom-sep"></div>
+            <button class="zoom-btn" onclick="fitToScreen()"><i class="fas fa-compress-arrows-alt"></i></button>
+            <button class="zoom-btn" onclick="resetZoom()">1:1</button>
         </div>
     </main>
 
-    <div class="template-panel" id="templatePanel">
-        <div class="template-panel-header">
-            <span class="template-panel-title" id="templatePanelTitle">选择模板</span>
-            <button class="template-panel-close" onclick="closeTemplatePanel()"><i class="fas fa-times"></i></button>
+    <div class="tpl-panel" id="tplPanel">
+        <div class="tpl-head">
+            <span class="tpl-title" id="tplTitle">选择模板</span>
+            <button class="tpl-close" onclick="closeTpl()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="template-panel-content">
-            <div class="template-grid" id="templateGrid"></div>
+        <div class="tpl-body">
+            <div class="tpl-grid" id="tplGrid"></div>
         </div>
     </div>
 
-    <div class="smart-toolbar" id="smartToolbar">
-        <div class="tool-group">
-            <button class="tool-btn" onclick="duplicateObj()" title="复制"><i class="fas fa-copy"></i></button>
-            <button class="tool-btn" onclick="centerObject()" title="居中"><i class="fas fa-crosshairs"></i></button>
-            <button class="tool-btn" onclick="bringForward()" title="上移"><i class="fas fa-chevron-up"></i></button>
-            <button class="tool-btn" onclick="sendBackward()" title="下移"><i class="fas fa-chevron-down"></i></button>
-        </div>
-        <div class="tool-group" id="textTools" style="display:none;">
-            <div class="tool-divider"></div>
-            <select class="font-select" id="fontSelect" onchange="setFont(this.value)">
+    <div class="smart-toolbar" id="toolbar">
+        <button class="tool-btn" onclick="duplicateObj()" title="复制"><i class="fas fa-copy"></i></button>
+        <button class="tool-btn" onclick="centerObj()" title="居中"><i class="fas fa-crosshairs"></i></button>
+        <button class="tool-btn" onclick="bringFwd()" title="上移"><i class="fas fa-chevron-up"></i></button>
+        <button class="tool-btn" onclick="sendBwd()" title="下移"><i class="fas fa-chevron-down"></i></button>
+        
+        <div id="textTools" style="display:none;">
+            <div class="tool-sep"></div>
+            <select class="font-sel" id="fontSel" onchange="setFont(this.value)">
                 <option value="Noto Serif SC">宋体</option>
                 <option value="Noto Sans SC">黑体</option>
             </select>
-            <div class="size-control">
-                <button class="size-btn" onclick="adjustFontSize(-4)">−</button>
-                <span class="size-value" id="fontSizeVal" onclick="showSizeModal()">64</span>
-                <button class="size-btn" onclick="adjustFontSize(4)">+</button>
+            <div class="size-box">
+                <button class="size-btn" onclick="adjSize(-4)">−</button>
+                <span class="size-val" id="sizeVal" onclick="showSizeModal()">64</span>
+                <button class="size-btn" onclick="adjSize(4)">+</button>
             </div>
-            <div style="display:flex;gap:5px;" id="textColorPicker">
-                <div class="mini-color selected" style="background:#1A1A1A" onclick="setTextColor('#1A1A1A')"></div>
-                <div class="mini-color" style="background:#666" onclick="setTextColor('#666666')"></div>
-                <div class="mini-color" style="background:#FFF;border:1px solid #444" onclick="setTextColor('#FFFFFF')"></div>
-                <div class="mini-color picker" onclick="openColorPicker()"></div>
+            <div class="color-row" id="colorRow">
+                <div class="color-dot sel" style="background:#1A1A1A" onclick="setColor('#1A1A1A')"></div>
+                <div class="color-dot" style="background:#888" onclick="setColor('#888888')"></div>
+                <div class="color-dot" style="background:#FFF;border:1px solid #555" onclick="setColor('#FFFFFF')"></div>
+                <div class="color-dot picker" onclick="pickColor()"></div>
             </div>
         </div>
-        <div class="tool-group" id="imageTools" style="display:none;">
-            <div class="tool-divider"></div>
-            <button class="tool-btn" onclick="flipImage('x')" title="水平翻转"><i class="fas fa-arrows-alt-h"></i></button>
-            <button class="tool-btn" onclick="flipImage('y')" title="垂直翻转"><i class="fas fa-arrows-alt-v"></i></button>
-            <button class="tool-btn" onclick="applyFilter('grayscale')" title="黑白"><i class="fas fa-adjust"></i></button>
+        
+        <div id="imgTools" style="display:none;">
+            <div class="tool-sep"></div>
+            <button class="tool-btn" onclick="replaceImg()" title="替换"><i class="fas fa-exchange-alt"></i></button>
+            <button class="tool-btn" onclick="flipImg('x')"><i class="fas fa-arrows-alt-h"></i></button>
+            <button class="tool-btn" onclick="flipImg('y')"><i class="fas fa-arrows-alt-v"></i></button>
         </div>
-        <div class="tool-divider"></div>
+        
+        <div class="tool-sep"></div>
         <button class="tool-btn danger" onclick="deleteObj()" title="删除"><i class="fas fa-trash"></i></button>
     </div>
 
     <div class="dock">
-        <div class="dock-item" onclick="addText()"><i class="fas fa-font"></i><span>文字</span></div>
-        <div class="dock-item" onclick="triggerImageUpload()"><i class="fas fa-image"></i><span>图片</span></div>
-        <div class="dock-item" onclick="showPanel('canvas')"><i class="fas fa-th-large"></i><span>画布</span></div>
-        <div class="dock-item" onclick="showPanel('layers')"><i class="fas fa-layer-group"></i><span>图层</span></div>
+        <div class="dock-item" id="dockHand" onclick="setTool('hand')">
+            <i class="fas fa-hand-paper"></i>
+            <span>画布</span>
+        </div>
+        <div class="dock-item" id="dockSelect" onclick="setTool('select')">
+            <i class="fas fa-mouse-pointer"></i>
+            <span>选择</span>
+        </div>
+        <div class="dock-item" id="dockAdd" onclick="toggleAdd()">
+            <i class="fas fa-plus"></i>
+            <span>添加</span>
+            <div class="add-popup" id="addPopup">
+                <div class="add-item" onclick="startAddText(event)"><i class="fas fa-font"></i> 文字</div>
+                <div class="add-item" onclick="triggerImg(event)"><i class="fas fa-image"></i> 图片</div>
+            </div>
+        </div>
+        <div class="dock-item" onclick="showPanel('canvas')">
+            <i class="fas fa-palette"></i>
+            <span>背景</span>
+        </div>
+        <div class="dock-item" onclick="showPanel('layers')">
+            <i class="fas fa-layer-group"></i>
+            <span>图层</span>
+        </div>
     </div>
 
     <div class="overlay" id="overlay" onclick="hidePanel()"></div>
 
-    <div class="bottom-panel" id="panel-canvas">
-        <div class="panel-header">
+    <div class="panel" id="panel-canvas">
+        <div class="panel-head">
             <span class="panel-title">画布设置</span>
             <button class="panel-close" onclick="hidePanel()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="panel-content">
-            <div class="section">
-                <div class="section-label">视图控制</div>
-                <div class="view-btns">
-                    <button class="view-btn" onclick="fitToScreen();hidePanel()"><i class="fas fa-compress-arrows-alt"></i>适合屏幕</button>
-                    <button class="view-btn" onclick="actualSize();hidePanel()"><i class="fas fa-search"></i>实际大小</button>
-                    <button class="view-btn" onclick="resetPan();hidePanel()"><i class="fas fa-crosshairs"></i>居中显示</button>
-                </div>
-            </div>
+        <div class="panel-body">
             <div class="section">
                 <div class="section-label">背景颜色</div>
-                <div class="bg-grid">
-                    <div class="bg-item selected" style="background:#F8F6F1" onclick="setBgColor('#F8F6F1')"></div>
-                    <div class="bg-item" style="background:#FFFFFF" onclick="setBgColor('#FFFFFF')"></div>
-                    <div class="bg-item" style="background:#FAFAFA" onclick="setBgColor('#FAFAFA')"></div>
-                    <div class="bg-item" style="background:#E8E4DD" onclick="setBgColor('#E8E4DD')"></div>
-                    <div class="bg-item" style="background:#1A1A1A" onclick="setBgColor('#1A1A1A')"></div>
-                    <div class="bg-item" style="background:#0D0D0D" onclick="setBgColor('#0D0D0D')"></div>
+                <div class="bg-grid" id="bgGrid">
+                    <div class="bg-item sel" style="background:#F8F6F1" data-c="#F8F6F1"></div>
+                    <div class="bg-item" style="background:#FFFFFF" data-c="#FFFFFF"></div>
+                    <div class="bg-item" style="background:#FAFAFA" data-c="#FAFAFA"></div>
+                    <div class="bg-item" style="background:#E8E4DD" data-c="#E8E4DD"></div>
+                    <div class="bg-item" style="background:#1A1A1A" data-c="#1A1A1A"></div>
+                    <div class="bg-item" style="background:#0D0D0D" data-c="#0D0D0D"></div>
                 </div>
-            </div>
-            <div class="section">
-                <div class="section-label">智能取色</div>
-                <button class="color-extract-btn" onclick="extractColors()"><i class="fas fa-magic"></i>从图片提取配色</button>
-                <div class="extracted-colors" id="extractedColors"></div>
             </div>
         </div>
     </div>
 
-    <div class="bottom-panel" id="panel-export">
-        <div class="panel-header">
+    <div class="panel" id="panel-export">
+        <div class="panel-head">
             <span class="panel-title">导出图片</span>
             <button class="panel-close" onclick="hidePanel()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="panel-content">
-            <div class="export-options">
-                <div class="export-option" onclick="exportImage(1)">
-                    <div class="export-option-info"><h4>快速分享</h4><p>微信/QQ分享</p></div>
-                    <span class="export-option-badge">1x</span>
+        <div class="panel-body">
+            <div class="export-list">
+                <div class="export-item" onclick="exportImg(1)">
+                    <div><h4>快速分享</h4><p>微信、QQ</p></div>
+                    <span class="export-badge">1x</span>
                 </div>
-                <div class="export-option" onclick="exportImage(2)">
-                    <div class="export-option-info"><h4>高清导出</h4><p>小红书/抖音发布</p></div>
-                    <span class="export-option-badge">2x 推荐</span>
+                <div class="export-item rec" onclick="exportImg(2)">
+                    <div><h4>高清导出</h4><p>小红书、抖音</p></div>
+                    <span class="export-badge">2x 推荐</span>
                 </div>
-                <div class="export-option" onclick="exportImage(3)">
-                    <div class="export-option-info"><h4>超清导出</h4><p>印刷/海报</p></div>
-                    <span class="export-option-badge">3x</span>
+                <div class="export-item" onclick="exportImg(3)">
+                    <div><h4>超清导出</h4><p>印刷、海报</p></div>
+                    <span class="export-badge">3x</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="bottom-panel" id="panel-layers">
-        <div class="panel-header">
-            <span class="panel-title">图层管理</span>
+    <div class="panel" id="panel-layers">
+        <div class="panel-head">
+            <span class="panel-title">图层</span>
             <button class="panel-close" onclick="hidePanel()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="panel-content">
+        <div class="panel-body">
             <div id="layerList"></div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="sizeModal">
+    <div class="modal-bg" id="sizeModal">
         <div class="modal">
             <div class="modal-title">输入字号</div>
             <input type="number" id="sizeInput" min="8" max="500" value="64">
             <div class="modal-btns">
-                <button class="btn-cancel" onclick="closeSizeModal()">取消</button>
-                <button class="btn-confirm" onclick="confirmSizeModal()">确定</button>
+                <button class="m-cancel" onclick="closeSizeModal()">取消</button>
+                <button class="m-ok" onclick="confirmSize()">确定</button>
             </div>
         </div>
     </div>
 
-    <input type="file" id="imgUpload" class="hidden-input" accept="image/*" onchange="handleImageUpload(this)">
-    <input type="color" id="colorInput" class="hidden-input" onchange="applyPickedColor(this.value)">
+    <input type="file" id="imgInput" class="hidden" accept="image/*" onchange="handleImg(this)">
+    <input type="file" id="imgReplace" class="hidden" accept="image/*" onchange="handleReplace(this)">
+    <input type="color" id="colorInput" class="hidden" onchange="applyColor(this.value)">
     <div class="toast" id="toast"></div>
 
     <script>
+        // 配置
+        const CONFIG = { version: 'V19', defaultBg: '#F8F6F1', initScale: 0.45 };
+
+        // 占位图
+        function placeholder(w, h) {
+            return 'data:image/svg+xml,' + encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+                    <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#E8E4DD"/><stop offset="100%" style="stop-color:#D8D4CD"/>
+                    </linearGradient></defs>
+                    <rect fill="url(#g)" width="${w}" height="${h}" rx="6"/>
+                    <rect x="${w*0.28}" y="${h*0.22}" width="${w*0.44}" height="${h*0.36}" fill="#D0CCC5" rx="4"/>
+                    <circle cx="${w*0.4}" cy="${h*0.32}" r="${Math.min(w,h)*0.05}" fill="#C0BBB2"/>
+                    <polygon points="${w*0.32},${h*0.5} ${w*0.5},${h*0.36} ${w*0.68},${h*0.5}" fill="#C0BBB2"/>
+                    <text x="${w/2}" y="${h*0.72}" text-anchor="middle" fill="#888" font-size="${Math.min(w,h)*0.045}" font-family="sans-serif">点击替换图片</text>
+                </svg>
+            `);
+        }
+
+        // 场景
         const SCENES = {
-            'xhs-cover': { name: '小红书封面', w: 1080, h: 1440, templates: [
-                { name: '极简留白', bg: '#F8F6F1', objects: [{ type:'text', text:'标题', x:0.5, y:0.5, size:80, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '杂志风', bg: '#FFF', objects: [{ type:'text', text:'KINFOLK', x:0.5, y:0.1, size:22, font:'Noto Sans SC', color:'#1A1A1A', spacing:800 },{ type:'text', text:'主题\n文字', x:0.5, y:0.5, size:100, font:'Noto Serif SC', color:'#1A1A1A', lineHeight:1.1 }]},
-                { name: '底部标题', bg: '#F5F5F5', objects: [{ type:'text', text:'大标题', x:0.5, y:0.78, size:72, font:'Noto Serif SC', color:'#1A1A1A' },{ type:'text', text:'副标题', x:0.5, y:0.88, size:24, font:'Noto Sans SC', color:'#888' }]},
-                { name: '深色', bg: '#1A1A1A', objects: [{ type:'text', text:'标题', x:0.5, y:0.5, size:88, font:'Noto Serif SC', color:'#FFF' }]},
-                { name: '顶部布局', bg: '#FAF8F5', objects: [{ type:'text', text:'主标题', x:0.5, y:0.18, size:64, font:'Noto Serif SC', color:'#1A1A1A' }]}
+            'xhs': { name: '📱 小红书封面', w: 1080, h: 1440, tpl: [
+                { name: '图文排版', bg: '#F8F6F1', obj: [
+                    { t:'img', x:0.5, y:0.35, w:0.7, h:0.4 },
+                    { t:'txt', txt:'标题文字', x:0.5, y:0.72, s:56, f:'Noto Serif SC', c:'#1A1A1A' },
+                    { t:'txt', txt:'副标题描述', x:0.5, y:0.82, s:22, f:'Noto Sans SC', c:'#888' }
+                ]},
+                { name: '杂志风', bg: '#FFFFFF', obj: [
+                    { t:'txt', txt:'MAGAZINE', x:0.5, y:0.06, s:16, f:'Noto Sans SC', c:'#333', sp:500 },
+                    { t:'img', x:0.5, y:0.42, w:0.85, h:0.55 },
+                    { t:'txt', txt:'封面标题', x:0.5, y:0.85, s:42, f:'Noto Serif SC', c:'#1A1A1A' }
+                ]},
+                { name: '深色高级', bg: '#1A1A1A', obj: [
+                    { t:'img', x:0.5, y:0.38, w:0.65, h:0.42 },
+                    { t:'txt', txt:'暗色标题', x:0.5, y:0.75, s:48, f:'Noto Serif SC', c:'#FFFFFF' }
+                ]}
             ]},
-            'xhs-content': { name: '图文', w: 1080, h: 1350, templates: [
-                { name: '简约', bg: '#F8F6F1', objects: [{ type:'text', text:'内容标题', x:0.5, y:0.12, size:48, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '清单', bg: '#FFF', objects: [{ type:'text', text:'清单标题', x:0.5, y:0.1, size:44, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '引用', bg: '#F5F5F5', objects: [{ type:'text', text:'"引用文字"', x:0.5, y:0.5, size:36, font:'Noto Serif SC', color:'#333' }]},
-                { name: '左对齐', bg: '#FAF8F5', objects: [{ type:'text', text:'标题', x:0.12, y:0.15, size:48, font:'Noto Serif SC', color:'#1A1A1A', align:'left', originX:'left' }]},
-                { name: '深色', bg: '#1A1A1A', objects: [{ type:'text', text:'夜间模式', x:0.5, y:0.5, size:40, font:'Noto Sans SC', color:'#FFF' }]}
+            'dy': { name: '🎬 抖音', w: 1080, h: 1920, tpl: [
+                { name: '视频封面', bg: '#0D0D0D', obj: [
+                    { t:'img', x:0.5, y:0.4, w:0.8, h:0.45 },
+                    { t:'txt', txt:'视频标题', x:0.5, y:0.75, s:52, f:'Noto Sans SC', c:'#FFF' }
+                ]},
+                { name: '教程系列', bg: '#FFFFFF', obj: [
+                    { t:'txt', txt:'教程', x:0.5, y:0.1, s:22, f:'Noto Sans SC', c:'#888' },
+                    { t:'img', x:0.5, y:0.4, w:0.85, h:0.42 },
+                    { t:'txt', txt:'技巧分享', x:0.5, y:0.75, s:44, f:'Noto Serif SC', c:'#1A1A1A' }
+                ]}
             ]},
-            'douyin': { name: '抖音', w: 1080, h: 1920, templates: [
-                { name: '居中', bg: '#0D0D0D', objects: [{ type:'text', text:'视频标题', x:0.5, y:0.45, size:72, font:'Noto Sans SC', color:'#FFF' }]},
-                { name: '浅色', bg: '#F8F6F1', objects: [{ type:'text', text:'标题', x:0.5, y:0.5, size:80, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '底部', bg: '#1A1A1A', objects: [{ type:'text', text:'标题', x:0.5, y:0.85, size:48, font:'Noto Sans SC', color:'#FFF' }]},
-                { name: '大字', bg: '#FFF', objects: [{ type:'text', text:'大', x:0.5, y:0.5, size:200, font:'Noto Sans SC', color:'#1A1A1A' }]},
-                { name: '双行', bg: '#2C2C2C', objects: [{ type:'text', text:'第一行\n第二行', x:0.5, y:0.5, size:56, font:'Noto Sans SC', color:'#FFF', lineHeight:1.5 }]}
+            'wx': { name: '💬 朋友圈', w: 1080, h: 1080, tpl: [
+                { name: '方形图文', bg: '#F8F6F1', obj: [
+                    { t:'img', x:0.5, y:0.4, w:0.75, h:0.5 },
+                    { t:'txt', txt:'标题文字', x:0.5, y:0.82, s:32, f:'Noto Serif SC', c:'#1A1A1A' }
+                ]},
+                { name: '日签卡片', bg: '#FFFFFF', obj: [
+                    { t:'txt', txt:'18', x:0.5, y:0.2, s:90, f:'Noto Serif SC', c:'#1A1A1A' },
+                    { t:'txt', txt:'January', x:0.5, y:0.32, s:16, f:'Noto Sans SC', c:'#888' },
+                    { t:'img', x:0.5, y:0.62, w:0.65, h:0.4 }
+                ]}
             ]},
-            'wechat': { name: '朋友圈', w: 1080, h: 1080, templates: [
-                { name: '方形', bg: '#F8F6F1', objects: [{ type:'text', text:'文字', x:0.5, y:0.5, size:96, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '编号', bg: '#FFF', objects: [{ type:'text', text:'01', x:0.5, y:0.5, size:140, font:'Noto Sans SC', color:'#1A1A1A' }]},
-                { name: '深色', bg: '#1A1A1A', objects: [{ type:'text', text:'暗色', x:0.5, y:0.5, size:80, font:'Noto Serif SC', color:'#FFF' }]},
-                { name: '日签', bg: '#FAF8F5', objects: [{ type:'text', text:'18', x:0.5, y:0.4, size:120, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '海报', bg: '#F5F5F5', objects: [{ type:'text', text:'一句话', x:0.5, y:0.5, size:56, font:'Noto Serif SC', color:'#333' }]}
-            ]},
-            'ppt': { name: 'PPT', w: 1920, h: 1080, templates: [
-                { name: '标题页', bg: '#FFF', objects: [{ type:'text', text:'演示标题', x:0.5, y:0.45, size:72, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '章节', bg: '#1A1A1A', objects: [{ type:'text', text:'01', x:0.5, y:0.38, size:120, font:'Noto Sans SC', color:'#333' },{ type:'text', text:'章节', x:0.5, y:0.58, size:56, font:'Noto Serif SC', color:'#FFF' }]},
-                { name: '内容', bg: '#F8F6F1', objects: [{ type:'text', text:'标题', x:0.5, y:0.15, size:48, font:'Noto Serif SC', color:'#1A1A1A' }]},
-                { name: '引用', bg: '#FFF', objects: [{ type:'text', text:'"引用"', x:0.5, y:0.5, size:48, font:'Noto Serif SC', color:'#333' }]},
-                { name: '结束', bg: '#1A1A1A', objects: [{ type:'text', text:'THANKS', x:0.5, y:0.5, size:80, font:'Noto Sans SC', color:'#FFF', spacing:300 }]}
+            'ppt': { name: '📊 PPT', w: 1920, h: 1080, tpl: [
+                { name: '标题页', bg: '#FFFFFF', obj: [
+                    { t:'txt', txt:'演示标题', x:0.5, y:0.4, s:60, f:'Noto Serif SC', c:'#1A1A1A' },
+                    { t:'txt', txt:'副标题', x:0.5, y:0.52, s:24, f:'Noto Sans SC', c:'#888' }
+                ]}
             ]}
         };
 
-        let currentScene = 'xhs-cover', currentW = 1080, currentH = 1440, isPanMode = false;
+        // 状态
+        let scene = 'xhs', cW = 1080, cH = 1440;
+        let scale = CONFIG.initScale, panX = 0, panY = 0;
+        let tool = 'hand'; // hand | select | add
+        let isPan = false, panSX = 0, panSY = 0;
 
-        const canvas = new fabric.Canvas('c', { 
-            width: currentW, height: currentH, backgroundColor: '#F8F6F1', 
-            preserveObjectStacking: true, selection: true, allowTouchScrolling: false
+        // Fabric
+        const canvas = new fabric.Canvas('canvas', {
+            width: cW, height: cH, backgroundColor: CONFIG.defaultBg,
+            preserveObjectStacking: true, selection: true
         });
 
-        let history = [], historyStep = -1;
-        function saveHistory() { 
-            if (historyStep < history.length - 1) history = history.slice(0, historyStep + 1); 
-            const json = JSON.stringify(canvas.toJSON());
-            history.push(json); 
-            if (history.length > 30) history.shift(); else historyStep++; 
-            try { localStorage.setItem('mons_draft', json); } catch(e) {} 
-        }
-        function undo() { if (historyStep > 0) { historyStep--; canvas.loadFromJSON(history[historyStep], () => canvas.renderAll()); showToast('已撤销'); }}
-        function redo() { if (historyStep < history.length - 1) { historyStep++; canvas.loadFromJSON(history[historyStep], () => canvas.renderAll()); showToast('已重做'); }}
-
-        canvas.on('object:added', () => { saveHistory(); if (document.getElementById('panel-layers').classList.contains('show')) updateLayerPanel(); });
-        canvas.on('object:removed', () => { saveHistory(); if (document.getElementById('panel-layers').classList.contains('show')) updateLayerPanel(); });
-        canvas.on('object:modified', saveHistory);
-        canvas.on('selection:created', updateToolbar);
-        canvas.on('selection:updated', updateToolbar);
-        canvas.on('selection:cleared', hideToolbar);
-
-        const guideH = document.getElementById('guideH'), guideV = document.getElementById('guideV');
-        canvas.on('object:moving', function(e) { 
-            const SNAP = 10 / canvas.getZoom();
-            const obj = e.target, cx = currentW/2, cy = currentH/2; 
-            let sx = false, sy = false; 
-            if (Math.abs(obj.left - cx) < SNAP) { obj.set('left', cx); sx = true; } 
-            if (Math.abs(obj.top - cy) < SNAP) { obj.set('top', cy); sy = true; } 
-            const vpt = canvas.viewportTransform; 
-            if (sx) { guideV.style.left = (cx * vpt[0] + vpt[4]) + 'px'; guideV.classList.add('show'); } else guideV.classList.remove('show'); 
-            if (sy) { guideH.style.top = (cy * vpt[3] + vpt[5]) + 'px'; guideH.classList.add('show'); } else guideH.classList.remove('show'); 
-        });
-        canvas.on('object:modified', () => { guideH.classList.remove('show'); guideV.classList.remove('show'); });
-        saveHistory();
-
-        function renderSceneBar() { document.getElementById('sceneBar').innerHTML = Object.entries(SCENES).map(([id, s]) => `<button class="scene-btn ${id===currentScene?'active':''}" data-scene="${id}" onclick="openTemplatePanel('${id}')">${s.name}<i class="fas fa-chevron-down arrow"></i></button>`).join(''); }
-        function openTemplatePanel(id) { const s = SCENES[id]; document.getElementById('templatePanelTitle').textContent = s.name + ' 模板'; document.getElementById('templateGrid').innerHTML = s.templates.map((t, i) => `<div class="tpl-card" onclick="applyTemplate('${id}',${i})"><div class="tpl-preview" style="background:${t.bg};color:${['#1A1A1A','#0D0D0D','#2C2C2C'].includes(t.bg)?'#fff':'#1A1A1A'}">${t.name}</div><div class="tpl-name">${t.name}</div></div>`).join(''); document.getElementById('templatePanel').classList.add('show'); }
-        function closeTemplatePanel() { document.getElementById('templatePanel').classList.remove('show'); }
-        function applyTemplate(id, idx) { const s = SCENES[id], t = s.templates[idx]; currentScene = id; currentW = s.w; currentH = s.h; document.querySelectorAll('.scene-btn').forEach(b => b.classList.toggle('active', b.dataset.scene === id)); canvas.clear(); canvas.setDimensions({ width: currentW, height: currentH }); canvas.setBackgroundColor(t.bg, canvas.renderAll.bind(canvas)); t.objects.forEach(o => { if (o.type === 'text') { canvas.add(new fabric.Textbox(o.text, { left: o.x * currentW, top: o.y * currentH, fontSize: o.size, fontFamily: o.font, fill: o.color, originX: o.originX || 'center', originY: 'center', textAlign: o.align || 'center', width: currentW * 0.85, lineHeight: o.lineHeight || 1.2, charSpacing: o.spacing || 0 })); } }); canvas.renderAll(); fitToScreen(); closeTemplatePanel(); showToast(`已应用「${t.name}」`); }
-        renderSceneBar();
-
-        // 视口控制
-        function fitToScreen() { 
-            const ws = document.getElementById('workspace'); 
-            const padding = 50;
-            const scale = Math.min((ws.clientWidth - padding) / currentW, (ws.clientHeight - padding) / currentH, 1); 
-            const ox = (ws.clientWidth - currentW * scale) / 2; 
-            const oy = (ws.clientHeight - currentH * scale) / 2; 
-            canvas.setViewportTransform([scale, 0, 0, scale, ox, oy]); 
-            canvas.setWidth(ws.clientWidth); 
-            canvas.setHeight(ws.clientHeight); 
-            updateZoomDisplay(); 
-        }
-        function actualSize() { 
-            const ws = document.getElementById('workspace'); 
-            const ox = (ws.clientWidth - currentW) / 2; 
-            const oy = (ws.clientHeight - currentH) / 2; 
-            canvas.setViewportTransform([1, 0, 0, 1, ox, oy]); 
-            canvas.setWidth(ws.clientWidth); 
-            canvas.setHeight(ws.clientHeight); 
-            updateZoomDisplay(); 
-            showToast('100% 实际大小'); 
-        }
-        function resetPan() { 
-            const ws = document.getElementById('workspace'); 
-            const zoom = canvas.getZoom(); 
-            const ox = (ws.clientWidth - currentW * zoom) / 2; 
-            const oy = (ws.clientHeight - currentH * zoom) / 2; 
-            canvas.setViewportTransform([zoom, 0, 0, zoom, ox, oy]); 
-            canvas.requestRenderAll(); 
-            showToast('已居中'); 
-        }
-        function zoomIn() { zoomToCenter(Math.min(4, canvas.getZoom() * 1.3)); }
-        function zoomOut() { zoomToCenter(Math.max(0.1, canvas.getZoom() / 1.3)); }
-        function zoomToCenter(newZoom) { const ws = document.getElementById('workspace'); canvas.zoomToPoint({ x: ws.clientWidth / 2, y: ws.clientHeight / 2 }, newZoom); updateZoomDisplay(); }
-        function updateZoomDisplay() { document.getElementById('zoomDisplay').textContent = Math.round(canvas.getZoom() * 100) + '%'; }
-        function togglePanMode() { 
-            isPanMode = !isPanMode; 
-            document.getElementById('panModeBtn').classList.toggle('active', isPanMode); 
-            canvas.selection = !isPanMode; 
-            canvas.defaultCursor = isPanMode ? 'grab' : 'default'; 
-            canvas.hoverCursor = isPanMode ? 'grab' : 'move'; 
-            if (isPanMode) canvas.discardActiveObject();
-            canvas.renderAll();
-            showToast(isPanMode ? '平移模式' : '选择模式'); 
-        }
-        window.addEventListener('resize', () => { const ws = document.getElementById('workspace'); canvas.setWidth(ws.clientWidth); canvas.setHeight(ws.clientHeight); });
-
-        // 手势
-        let lastDist = 0, lastPanX = 0, lastPanY = 0, isPanning = false;
+        const box = document.getElementById('canvasBox');
         const ws = document.getElementById('workspace');
-        ws.addEventListener('touchstart', e => { 
-            if (e.touches.length === 2) { 
-                lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); 
-                isPanning = false; 
-            } else if (e.touches.length === 1 && (isPanMode || !canvas.getActiveObject())) { 
-                isPanning = true; 
-                lastPanX = e.touches[0].clientX; 
-                lastPanY = e.touches[0].clientY; 
-            } 
+
+        // 历史
+        let hist = [], hIdx = -1;
+        function saveHist() {
+            if (hIdx < hist.length - 1) hist = hist.slice(0, hIdx + 1);
+            hist.push(JSON.stringify(canvas.toJSON(['isPlaceholder'])));
+            if (hist.length > 50) hist.shift(); else hIdx++;
+            try { localStorage.setItem('mons_draft', hist[hIdx]); localStorage.setItem('mons_scene', scene); } catch(e) {}
+        }
+        function undo() { if (hIdx > 0) { hIdx--; canvas.loadFromJSON(hist[hIdx], () => canvas.renderAll()); toast('已撤销'); }}
+        function redo() { if (hIdx < hist.length - 1) { hIdx++; canvas.loadFromJSON(hist[hIdx], () => canvas.renderAll()); toast('已重做'); }}
+
+        canvas.on('object:added', saveHist);
+        canvas.on('object:removed', saveHist);
+        canvas.on('object:modified', saveHist);
+        canvas.on('selection:created', showToolbar);
+        canvas.on('selection:updated', showToolbar);
+        canvas.on('selection:cleared', hideToolbar);
+        canvas.on('mouse:dblclick', e => { if (e.target?.type === 'image') { canvas.setActiveObject(e.target); replaceImg(); }});
+
+        saveHist();
+
+        // 变换
+        function updateTf() {
+            box.style.width = cW + 'px';
+            box.style.height = cH + 'px';
+            box.style.left = panX + 'px';
+            box.style.top = panY + 'px';
+            box.style.transform = `scale(${scale})`;
+            box.style.transformOrigin = '0 0';
+            document.getElementById('zoomVal').textContent = Math.round(scale * 100) + '%';
+        }
+
+        function fitToScreen() {
+            const wW = ws.clientWidth, wH = ws.clientHeight, pad = 80;
+            scale = Math.min((wW - pad * 2) / cW, (wH - pad * 2) / cH, 0.65);
+            panX = (wW - cW * scale) / 2;
+            panY = (wH - cH * scale) / 2;
+            updateTf();
+        }
+
+        function resetZoom() {
+            scale = 1;
+            panX = (ws.clientWidth - cW) / 2;
+            panY = (ws.clientHeight - cH) / 2;
+            updateTf();
+            toast('100%');
+        }
+
+        function zoomAt(ns, cx, cy) {
+            const os = scale;
+            scale = Math.max(0.1, Math.min(3, ns));
+            panX = cx - (cx - panX) * (scale / os);
+            panY = cy - (cy - panY) * (scale / os);
+            updateTf();
+        }
+
+        function zoomIn() { zoomAt(scale * 1.25, ws.clientWidth / 2, ws.clientHeight / 2); }
+        function zoomOut() { zoomAt(scale / 1.25, ws.clientWidth / 2, ws.clientHeight / 2); }
+
+        // 工具
+        function setTool(t) {
+            tool = t;
+            hideAdd();
+            ws.className = 'workspace tool-' + t;
+            document.querySelectorAll('.dock-item').forEach(el => el.classList.remove('active'));
+            if (t === 'hand') {
+                document.getElementById('dockHand').classList.add('active');
+                canvas.discardActiveObject();
+                canvas.renderAll();
+                hideToolbar();
+            } else if (t === 'select') {
+                document.getElementById('dockSelect').classList.add('active');
+            } else if (t === 'add') {
+                document.getElementById('dockAdd').classList.add('active');
+                canvas.discardActiveObject();
+                canvas.renderAll();
+                hideToolbar();
+            }
+        }
+
+        function toggleAdd() {
+            const p = document.getElementById('addPopup');
+            if (p.classList.contains('show')) { hideAdd(); }
+            else { p.classList.add('show'); }
+        }
+        function hideAdd() { document.getElementById('addPopup').classList.remove('show'); }
+
+        function startAddText(e) {
+            e.stopPropagation();
+            hideAdd();
+            setTool('add');
+            toast('点击画布添加文字');
+        }
+
+        function triggerImg(e) {
+            if (e) e.stopPropagation();
+            hideAdd();
+            document.getElementById('imgInput').click();
+        }
+
+        // 工作区交互
+        ws.addEventListener('mousedown', e => {
+            if (tool === 'hand' && (e.target === ws || e.target === box)) {
+                isPan = true;
+                panSX = e.clientX - panX;
+                panSY = e.clientY - panY;
+                ws.classList.add('dragging');
+            }
+        });
+
+        ws.addEventListener('click', e => {
+            if (tool === 'add' && (e.target.tagName === 'CANVAS' || e.target === box)) {
+                const rect = box.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / scale;
+                const y = (e.clientY - rect.top) / scale;
+                addTextAt(x, y);
+                setTool('select');
+            }
+        });
+
+        document.addEventListener('mousemove', e => {
+            if (isPan) {
+                panX = e.clientX - panSX;
+                panY = e.clientY - panSY;
+                updateTf();
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isPan = false;
+            ws.classList.remove('dragging');
+        });
+
+        // 触摸
+        let tDist = 0, tScale = 1;
+        ws.addEventListener('touchstart', e => {
+            if (tool === 'hand' && e.target === ws) {
+                if (e.touches.length === 1) {
+                    isPan = true;
+                    panSX = e.touches[0].clientX - panX;
+                    panSY = e.touches[0].clientY - panY;
+                } else if (e.touches.length === 2) {
+                    const dx = e.touches[0].clientX - e.touches[1].clientX;
+                    const dy = e.touches[0].clientY - e.touches[1].clientY;
+                    tDist = Math.sqrt(dx * dx + dy * dy);
+                    tScale = scale;
+                }
+            }
         }, { passive: true });
-        ws.addEventListener('touchmove', e => { 
-            if (e.touches.length === 2) { 
-                e.preventDefault(); 
-                const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); 
-                const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2; 
-                const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2; 
-                canvas.zoomToPoint({ x: cx, y: cy }, Math.max(0.1, Math.min(4, canvas.getZoom() * d / lastDist))); 
-                lastDist = d; 
-                updateZoomDisplay(); 
-            } else if (e.touches.length === 1 && isPanning) { 
-                e.preventDefault(); 
-                const vpt = canvas.viewportTransform.slice(); 
-                vpt[4] += e.touches[0].clientX - lastPanX; 
-                vpt[5] += e.touches[0].clientY - lastPanY; 
-                canvas.setViewportTransform(vpt); 
-                lastPanX = e.touches[0].clientX; 
-                lastPanY = e.touches[0].clientY; 
-            } 
+
+        ws.addEventListener('touchmove', e => {
+            if (isPan && e.touches.length === 1) {
+                panX = e.touches[0].clientX - panSX;
+                panY = e.touches[0].clientY - panSY;
+                updateTf();
+            } else if (e.touches.length === 2) {
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+                zoomAt(tScale * (d / tDist), cx, cy);
+            }
+        }, { passive: true });
+
+        ws.addEventListener('touchend', () => { isPan = false; });
+
+        // 滚轮
+        ws.addEventListener('wheel', e => {
+            e.preventDefault();
+            const rect = ws.getBoundingClientRect();
+            const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+            zoomAt(scale * (e.deltaY > 0 ? 0.9 : 1.1), mx, my);
         }, { passive: false });
-        ws.addEventListener('touchend', () => { isPanning = false; });
 
-        let isMousePanning = false, mouseLastX = 0, mouseLastY = 0;
-        canvas.on('mouse:down', function(opt) { 
-            if (isPanMode || opt.e.altKey) { 
-                isMousePanning = true; 
-                canvas.defaultCursor = 'grabbing'; 
-                mouseLastX = opt.e.clientX; 
-                mouseLastY = opt.e.clientY; 
-            } 
-        });
-        canvas.on('mouse:move', function(opt) { 
-            if (isMousePanning) { 
-                const vpt = canvas.viewportTransform.slice(); 
-                vpt[4] += opt.e.clientX - mouseLastX; 
-                vpt[5] += opt.e.clientY - mouseLastY; 
-                canvas.setViewportTransform(vpt); 
-                mouseLastX = opt.e.clientX; 
-                mouseLastY = opt.e.clientY; 
-            } 
-        });
-        canvas.on('mouse:up', function() { isMousePanning = false; canvas.defaultCursor = isPanMode ? 'grab' : 'default'; });
-        canvas.on('mouse:wheel', opt => { 
-            const z = Math.max(0.1, Math.min(4, canvas.getZoom() * (0.999 ** opt.e.deltaY))); 
-            canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, z); 
-            opt.e.preventDefault(); 
-            updateZoomDisplay(); 
-        });
-
-        function updateToolbar() { 
-            const obj = canvas.getActiveObject(); 
-            if (!obj) return hideToolbar(); 
-            document.getElementById('smartToolbar').classList.add('show'); 
-            const tt = document.getElementById('textTools'), it = document.getElementById('imageTools'); 
-            if (obj.type === 'textbox' || obj.type === 'text') { 
-                tt.style.display = 'flex'; it.style.display = 'none'; 
-                document.getElementById('fontSizeVal').textContent = Math.round(obj.fontSize); 
-                document.getElementById('fontSelect').value = obj.fontFamily || 'Noto Serif SC'; 
-            } else if (obj.type === 'image') { 
-                tt.style.display = 'none'; it.style.display = 'flex'; 
-            } else { 
-                tt.style.display = 'none'; it.style.display = 'none'; 
-            } 
+        // 场景
+        function renderScenes() {
+            document.getElementById('sceneBar').innerHTML = Object.entries(SCENES).map(([id, s]) =>
+                `<button class="scene-btn ${id === scene ? 'active' : ''}" data-s="${id}" onclick="openTpl('${id}')">${s.name}</button>`
+            ).join('');
         }
-        function hideToolbar() { document.getElementById('smartToolbar').classList.remove('show'); }
 
-        function addText() { 
-            canvas.add(new fabric.Textbox('双击编辑', { 
-                left: currentW/2, top: currentH/2, fontSize: 64, fontFamily: 'Noto Serif SC', fill: '#1A1A1A', 
-                originX: 'center', originY: 'center', textAlign: 'center', width: currentW*0.8 
-            })); 
-            canvas.setActiveObject(canvas.getObjects().slice(-1)[0]); 
-            canvas.renderAll(); 
-            showToast('已添加文字'); 
+        function openTpl(id) {
+            const s = SCENES[id];
+            document.getElementById('tplTitle').textContent = s.name;
+            document.getElementById('tplGrid').innerHTML = s.tpl.map((t, i) => {
+                const hasImg = t.obj.some(o => o.t === 'img');
+                const dark = ['#1A1A1A', '#0D0D0D', '#000'].includes(t.bg);
+                return `<div class="tpl-card" onclick="applyTpl('${id}',${i})">
+                    <div class="tpl-preview" style="background:${t.bg};color:${dark ? '#fff' : '#1A1A1A'}">
+                        ${hasImg ? '<div class="tpl-img">🖼️</div>' : ''}
+                        <div class="tpl-text">${t.obj.find(o => o.t === 'txt')?.txt || t.name}</div>
+                    </div>
+                    <div class="tpl-name">${t.name}</div>
+                </div>`;
+            }).join('');
+            document.getElementById('tplPanel').classList.add('show');
         }
-        function setFont(f) { const o = canvas.getActiveObject(); if (o?.type === 'textbox') { o.set('fontFamily', f); canvas.renderAll(); saveHistory(); }}
-        function adjustFontSize(d) { const o = canvas.getActiveObject(); if (o?.type === 'textbox') { const s = Math.max(8, Math.min(500, o.fontSize + d)); o.set('fontSize', s); document.getElementById('fontSizeVal').textContent = s; canvas.renderAll(); saveHistory(); }}
+
+        function closeTpl() { document.getElementById('tplPanel').classList.remove('show'); }
+
+        function applyTpl(id, idx) {
+            const s = SCENES[id], t = s.tpl[idx];
+            scene = id; cW = s.w; cH = s.h;
+
+            document.querySelectorAll('.scene-btn').forEach(b => b.classList.toggle('active', b.dataset.s === id));
+
+            canvas.clear();
+            canvas.setDimensions({ width: cW, height: cH });
+            canvas.setBackgroundColor(t.bg, canvas.renderAll.bind(canvas));
+
+            t.obj.filter(o => o.t === 'txt').forEach(o => {
+                canvas.add(new fabric.Textbox(o.txt, {
+                    left: o.x * cW, top: o.y * cH,
+                    fontSize: o.s, fontFamily: o.f, fill: o.c,
+                    originX: 'center', originY: 'center', textAlign: 'center',
+                    width: cW * 0.8, charSpacing: o.sp || 0
+                }));
+            });
+
+            t.obj.filter(o => o.t === 'img').forEach(o => {
+                const iW = Math.round(cW * o.w), iH = Math.round(cH * o.h);
+                fabric.Image.fromURL(placeholder(iW, iH), img => {
+                    img.set({ left: o.x * cW, top: o.y * cH, originX: 'center', originY: 'center', isPlaceholder: true });
+                    canvas.add(img);
+                    canvas.sendToBack(img);
+                    canvas.renderAll();
+                }, { crossOrigin: 'anonymous' });
+            });
+
+            closeTpl();
+            setTimeout(fitToScreen, 50);
+            toast('✓ 已应用模板');
+        }
+
+        // 工具栏
+        function showToolbar(e) {
+            const obj = e?.target || canvas.getActiveObject();
+            if (!obj) return hideToolbar();
+            document.getElementById('toolbar').classList.add('show');
+            const tt = document.getElementById('textTools'), it = document.getElementById('imgTools');
+            if (obj.type === 'textbox') {
+                tt.style.display = 'flex'; it.style.display = 'none';
+                document.getElementById('sizeVal').textContent = Math.round(obj.fontSize);
+                document.getElementById('fontSel').value = obj.fontFamily || 'Noto Serif SC';
+            } else if (obj.type === 'image') {
+                tt.style.display = 'none'; it.style.display = 'flex';
+            } else {
+                tt.style.display = 'none'; it.style.display = 'none';
+            }
+        }
+        function hideToolbar() { document.getElementById('toolbar').classList.remove('show'); }
+
+        // 文字
+        function addTextAt(x, y) {
+            canvas.add(new fabric.Textbox('双击编辑', {
+                left: x, top: y, fontSize: 56, fontFamily: 'Noto Serif SC', fill: '#1A1A1A',
+                originX: 'center', originY: 'center', textAlign: 'center', width: cW * 0.7
+            }));
+            canvas.setActiveObject(canvas.getObjects().slice(-1)[0]);
+            canvas.renderAll();
+            toast('✓ 已添加文字');
+        }
+
+        function setFont(f) { const o = canvas.getActiveObject(); if (o?.type === 'textbox') { o.set('fontFamily', f); canvas.renderAll(); saveHist(); }}
+        function adjSize(d) { const o = canvas.getActiveObject(); if (o?.type === 'textbox') { const s = Math.max(8, Math.min(500, o.fontSize + d)); o.set('fontSize', s); document.getElementById('sizeVal').textContent = s; canvas.renderAll(); saveHist(); }}
         function showSizeModal() { const o = canvas.getActiveObject(); if (o?.type === 'textbox') { document.getElementById('sizeInput').value = Math.round(o.fontSize); document.getElementById('sizeModal').classList.add('show'); }}
         function closeSizeModal() { document.getElementById('sizeModal').classList.remove('show'); }
-        function confirmSizeModal() { const o = canvas.getActiveObject(); const v = parseInt(document.getElementById('sizeInput').value); if (o?.type === 'textbox' && v >= 8 && v <= 500) { o.set('fontSize', v); document.getElementById('fontSizeVal').textContent = v; canvas.renderAll(); saveHistory(); } closeSizeModal(); }
-        function setTextColor(c) { const o = canvas.getActiveObject(); if (o && (o.type === 'textbox' || o.type === 'text')) { o.set('fill', c); canvas.renderAll(); saveHistory(); document.querySelectorAll('#textColorPicker .mini-color:not(.picker)').forEach(e => e.classList.toggle('selected', e.style.background === c || e.style.backgroundColor === c)); }}
-        function openColorPicker() { document.getElementById('colorInput').click(); }
-        function applyPickedColor(c) { setTextColor(c); }
-
-        function triggerImageUpload() { document.getElementById('imgUpload').click(); }
-        function handleImageUpload(input) { 
-            const file = input.files[0]; 
-            if (!file) return; 
-            if (file.size > 10 * 1024 * 1024) { showToast('图片过大，请选择10MB以内'); return; } 
-            const reader = new FileReader(); 
-            reader.onload = e => { 
-                fabric.Image.fromURL(e.target.result, img => { 
-                    if (!img) { showToast('图片加载失败'); return; } 
-                    const s = Math.min(Math.min(currentW, currentH) * 0.6 / img.width, Math.min(currentW, currentH) * 0.6 / img.height, 1); 
-                    img.set({ left: currentW/2, top: currentH/2, originX: 'center', originY: 'center', scaleX: s, scaleY: s }); 
-                    canvas.add(img); 
-                    canvas.setActiveObject(img); 
-                    canvas.renderAll(); 
-                    showToast('已添加图片'); 
-                }, { crossOrigin: 'anonymous' }); 
-            }; 
-            reader.onerror = () => showToast('图片读取失败'); 
-            reader.readAsDataURL(file); 
-            input.value = ''; 
+        function confirmSize() { const o = canvas.getActiveObject(); const v = parseInt(document.getElementById('sizeInput').value); if (o?.type === 'textbox' && v >= 8 && v <= 500) { o.set('fontSize', v); document.getElementById('sizeVal').textContent = v; canvas.renderAll(); saveHist(); } closeSizeModal(); }
+        
+        function setColor(c) {
+            const o = canvas.getActiveObject();
+            if (o?.type === 'textbox') {
+                o.set('fill', c); canvas.renderAll(); saveHist();
+                document.querySelectorAll('#colorRow .color-dot:not(.picker)').forEach(e => {
+                    e.classList.toggle('sel', rgbHex(e.style.backgroundColor).toUpperCase() === c.toUpperCase());
+                });
+            }
         }
-        function flipImage(a) { const o = canvas.getActiveObject(); if (o?.type === 'image') { o.set(a === 'x' ? 'flipX' : 'flipY', a === 'x' ? !o.flipX : !o.flipY); canvas.renderAll(); saveHistory(); }}
-        function applyFilter(t) { const o = canvas.getActiveObject(); if (o?.type === 'image' && t === 'grayscale') { const has = o.filters?.some(f => f.type === 'Grayscale'); o.filters = has ? o.filters.filter(f => f.type !== 'Grayscale') : [...(o.filters||[]), new fabric.Image.filters.Grayscale()]; o.applyFilters(); canvas.renderAll(); saveHistory(); showToast(has ? '已移除黑白' : '已应用黑白'); }}
+        function rgbHex(rgb) { if (!rgb || rgb.startsWith('#')) return rgb; const m = rgb.match(/\d+/g); if (!m) return rgb; return '#' + m.slice(0, 3).map(x => parseInt(x).toString(16).padStart(2, '0')).join(''); }
+        function pickColor() { document.getElementById('colorInput').click(); }
+        function applyColor(c) { setColor(c); }
 
-        function duplicateObj() { const o = canvas.getActiveObject(); if (!o) return; o.clone(c => { c.set({ left: o.left + 30, top: o.top + 30 }); canvas.add(c); canvas.setActiveObject(c); canvas.renderAll(); showToast('已复制'); }); }
-        function deleteObj() { const o = canvas.getActiveObject(); if (!o) return; canvas.remove(o); canvas.renderAll(); showToast('已删除'); }
-        function bringForward() { const o = canvas.getActiveObject(); if (o) { canvas.bringForward(o); canvas.renderAll(); saveHistory(); }}
-        function sendBackward() { const o = canvas.getActiveObject(); if (o) { canvas.sendBackwards(o); canvas.renderAll(); saveHistory(); }}
-        function centerObject() { const o = canvas.getActiveObject(); if (o) { o.set({ left: currentW/2, top: currentH/2, originX: 'center', originY: 'center' }); o.setCoords(); canvas.renderAll(); saveHistory(); showToast('已居中'); }}
-        function setBgColor(c) { canvas.setBackgroundColor(c, canvas.renderAll.bind(canvas)); saveHistory(); document.querySelectorAll('.bg-item').forEach(i => i.classList.remove('selected')); if (event?.target) event.target.classList.add('selected'); }
-        function extractColors() { 
-            const imgs = canvas.getObjects('image'); 
-            if (!imgs.length) { showToast('请先添加图片'); return; } 
-            try { 
-                const img = imgs[imgs.length - 1], tc = document.createElement('canvas'), ctx = tc.getContext('2d'); 
-                tc.width = tc.height = 50; 
-                ctx.drawImage(img._element, 0, 0, 50, 50); 
-                const data = ctx.getImageData(0, 0, 50, 50).data, counts = {}; 
-                for (let i = 0; i < data.length; i += 16) { 
-                    const hex = '#' + [data[i], data[i+1], data[i+2]].map(v => (Math.round(v/32)*32).toString(16).padStart(2,'0')).join(''); 
-                    counts[hex] = (counts[hex]||0) + 1; 
-                } 
-                const colors = Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0,5).map(c => c[0]); 
-                document.getElementById('extractedColors').innerHTML = colors.map(c => `<div class="mini-color" style="background:${c};width:44px;height:44px" onclick="setBgColor('${c}')"></div>`).join(''); 
-                showToast('已提取配色'); 
-            } catch(e) { showToast('无法提取颜色'); }
+        // 图片
+        function handleImg(input) {
+            const file = input.files[0];
+            if (!file) return;
+            if (file.size > 10 * 1024 * 1024) { toast('图片过大'); return; }
+            const reader = new FileReader();
+            reader.onload = e => {
+                fabric.Image.fromURL(e.target.result, img => {
+                    if (!img) { toast('加载失败'); return; }
+                    const maxDim = Math.min(cW, cH) * 0.5;
+                    const s = Math.min(maxDim / img.width, maxDim / img.height, 1);
+                    img.set({ left: cW / 2, top: cH / 2, originX: 'center', originY: 'center', scaleX: s, scaleY: s });
+                    canvas.add(img);
+                    canvas.setActiveObject(img);
+                    canvas.renderAll();
+                    setTool('select');
+                    toast('✓ 已添加图片');
+                }, { crossOrigin: 'anonymous' });
+            };
+            reader.readAsDataURL(file);
+            input.value = '';
         }
 
-        let currentPanel = null;
-        function showPanel(id) { hidePanel(); currentPanel = id; document.getElementById('overlay').classList.add('show'); document.getElementById(`panel-${id}`).classList.add('show'); if (id === 'layers') updateLayerPanel(); }
-        function hidePanel() { document.getElementById('overlay').classList.remove('show'); document.querySelectorAll('.bottom-panel').forEach(p => p.classList.remove('show')); currentPanel = null; }
-        function updateLayerPanel() { 
-            const list = document.getElementById('layerList'), objs = canvas.getObjects(); 
-            if (!objs.length) { list.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:30px">暂无图层</div>'; return; } 
-            list.innerHTML = objs.map((o, i) => { 
-                const active = canvas.getActiveObject() === o; 
-                let icon = 'fa-shapes', name = '形状'; 
-                if (o.type === 'textbox' || o.type === 'text') { icon = 'fa-font'; name = o.text.substring(0,12) + (o.text.length>12?'...':''); } 
-                else if (o.type === 'image') { icon = 'fa-image'; name = '图片'; } 
-                return `<div class="layer-item ${active?'active':''}" onclick="selectLayer(${i})"><i class="fas ${icon} layer-icon"></i><span class="layer-name">${name}</span><button class="layer-delete" onclick="event.stopPropagation();deleteLayer(${i})"><i class="fas fa-trash"></i></button></div>`; 
-            }).reverse().join(''); 
-        }
-        function selectLayer(i) { const o = canvas.getObjects()[i]; if (o) { canvas.setActiveObject(o); canvas.renderAll(); updateLayerPanel(); }}
-        function deleteLayer(i) { const o = canvas.getObjects()[i]; if (o) { canvas.remove(o); canvas.renderAll(); updateLayerPanel(); }}
-
-        function exportImage(m) { 
-            canvas.discardActiveObject(); 
-            canvas.renderAll(); 
-            const vpt = canvas.viewportTransform.slice(); 
-            const ws = document.getElementById('workspace'); 
-            canvas.setViewportTransform([1,0,0,1,0,0]); 
-            canvas.setWidth(currentW); 
-            canvas.setHeight(currentH); 
-            const url = canvas.toDataURL({ format: 'jpeg', quality: 0.95, multiplier: m, width: currentW, height: currentH }); 
-            canvas.setViewportTransform(vpt); 
-            canvas.setWidth(ws.clientWidth); 
-            canvas.setHeight(ws.clientHeight); 
-            canvas.requestRenderAll(); 
-            const link = document.createElement('a'); 
-            link.download = `MONS_${currentScene}_${m}x_${Date.now()}.jpg`; 
-            link.href = url; 
-            link.click(); 
-            hidePanel(); 
-            showToast(`已导出 ${m}x 图片`); 
+        function replaceImg() {
+            const o = canvas.getActiveObject();
+            if (o?.type === 'image') document.getElementById('imgReplace').click();
         }
 
-        function showToast(msg) { 
-            const t = document.getElementById('toast'); 
-            t.textContent = msg; 
-            t.classList.add('show'); 
-            clearTimeout(t._t); 
-            t._t = setTimeout(() => t.classList.remove('show'), 2000); 
+        function handleReplace(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const o = canvas.getActiveObject();
+            if (!o || o.type !== 'image') return;
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                fabric.Image.fromURL(e.target.result, newImg => {
+                    if (!newImg) { toast('加载失败'); return; }
+                    const oW = o.width * o.scaleX, oH = o.height * o.scaleY;
+                    const s = Math.min(oW / newImg.width, oH / newImg.height);
+                    newImg.set({ left: o.left, top: o.top, originX: o.originX, originY: o.originY, scaleX: s, scaleY: s, isPlaceholder: false });
+                    const idx = canvas.getObjects().indexOf(o);
+                    canvas.remove(o);
+                    canvas.insertAt(newImg, idx);
+                    canvas.setActiveObject(newImg);
+                    canvas.renderAll();
+                    toast('✓ 已替换图片');
+                }, { crossOrigin: 'anonymous' });
+            };
+            reader.readAsDataURL(file);
+            input.value = '';
         }
 
-        document.addEventListener('keydown', e => { 
-            if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) { e.preventDefault(); undo(); } 
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) { e.preventDefault(); redo(); } 
-            if ((e.key === 'Delete' || e.key === 'Backspace') && !e.target.matches('input,textarea,select')) { e.preventDefault(); deleteObj(); } 
-            if (e.key === 'Escape') { closeTemplatePanel(); hidePanel(); closeSizeModal(); canvas.discardActiveObject(); canvas.renderAll(); } 
-            if ((e.ctrlKey || e.metaKey) && e.key === '0') { e.preventDefault(); fitToScreen(); } 
-            if ((e.ctrlKey || e.metaKey) && e.key === '=') { e.preventDefault(); zoomIn(); } 
-            if ((e.ctrlKey || e.metaKey) && e.key === '-') { e.preventDefault(); zoomOut(); } 
-            if (e.key === ' ' && !e.target.matches('input,textarea')) { e.preventDefault(); togglePanMode(); } 
+        function flipImg(axis) { const o = canvas.getActiveObject(); if (o?.type === 'image') { o.set(axis === 'x' ? 'flipX' : 'flipY', axis === 'x' ? !o.flipX : !o.flipY); canvas.renderAll(); saveHist(); }}
+
+        // 通用
+        function duplicateObj() { const o = canvas.getActiveObject(); if (!o) return; o.clone(c => { c.set({ left: o.left + 30, top: o.top + 30 }); canvas.add(c); canvas.setActiveObject(c); canvas.renderAll(); toast('✓ 已复制'); }, ['isPlaceholder']); }
+        function deleteObj() { const o = canvas.getActiveObject(); if (!o) return; canvas.remove(o); canvas.renderAll(); toast('✓ 已删除'); }
+        function bringFwd() { const o = canvas.getActiveObject(); if (o) { canvas.bringForward(o); canvas.renderAll(); saveHist(); }}
+        function sendBwd() { const o = canvas.getActiveObject(); if (o) { canvas.sendBackwards(o); canvas.renderAll(); saveHist(); }}
+        function centerObj() { const o = canvas.getActiveObject(); if (o) { o.set({ left: cW / 2, top: cH / 2, originX: 'center', originY: 'center' }); o.setCoords(); canvas.renderAll(); saveHist(); toast('✓ 已居中'); }}
+
+        // 背景
+        document.getElementById('bgGrid').addEventListener('click', e => {
+            const item = e.target.closest('.bg-item');
+            if (!item) return;
+            canvas.setBackgroundColor(item.dataset.c, canvas.renderAll.bind(canvas));
+            saveHist();
+            document.querySelectorAll('.bg-item').forEach(i => i.classList.remove('sel'));
+            item.classList.add('sel');
         });
 
-        document.fonts.ready.then(() => { 
-            canvas.renderAll(); 
-            setTimeout(() => { 
-                document.getElementById('loadingScreen').classList.add('hide'); 
-                try { 
-                    const draft = localStorage.getItem('mons_draft'); 
-                    if (draft) { canvas.loadFromJSON(draft, () => fitToScreen()); } 
-                    else { applyTemplate('xhs-cover', 0); } 
-                } catch(e) { applyTemplate('xhs-cover', 0); } 
-            }, 300); 
+        // 面板
+        function showPanel(id) { hidePanel(); document.getElementById('overlay').classList.add('show'); document.getElementById(`panel-${id}`).classList.add('show'); if (id === 'layers') updateLayers(); }
+        function hidePanel() { document.getElementById('overlay').classList.remove('show'); document.querySelectorAll('.panel').forEach(p => p.classList.remove('show')); }
+
+        function updateLayers() {
+            const list = document.getElementById('layerList'), objs = canvas.getObjects();
+            if (!objs.length) { list.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:20px">暂无图层</div>'; return; }
+            list.innerHTML = objs.map((o, i) => {
+                const active = canvas.getActiveObject() === o;
+                let icon = 'fa-shapes', name = '形状';
+                if (o.type === 'textbox') { icon = 'fa-font'; name = o.text.substring(0, 10) + (o.text.length > 10 ? '...' : ''); }
+                else if (o.type === 'image') { icon = 'fa-image'; name = o.isPlaceholder ? '占位图' : '图片'; }
+                return `<div class="layer-item ${active ? 'active' : ''}" onclick="selLayer(${i})"><i class="fas ${icon} layer-icon"></i><span class="layer-name">${name}</span><button class="layer-del" onclick="event.stopPropagation();delLayer(${i})"><i class="fas fa-trash"></i></button></div>`;
+            }).reverse().join('');
+        }
+        function selLayer(i) { setTool('select'); const o = canvas.getObjects()[i]; if (o) { canvas.setActiveObject(o); canvas.renderAll(); updateLayers(); }}
+        function delLayer(i) { const o = canvas.getObjects()[i]; if (o) { canvas.remove(o); canvas.renderAll(); updateLayers(); }}
+
+        // 导出
+        function exportImg(m) {
+            canvas.discardActiveObject();
+            canvas.renderAll();
+            const url = canvas.toDataURL({ format: 'jpeg', quality: 0.95, multiplier: m });
+            const link = document.createElement('a');
+            link.download = `MONS_${scene}_${m}x_${Date.now()}.jpg`;
+            link.href = url;
+            link.click();
+            hidePanel();
+            toast('✓ 已导出', 'success');
+        }
+
+        // 全屏
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+                document.getElementById('fsIcon').className = 'fas fa-compress';
+            } else {
+                document.exitFullscreen();
+                document.getElementById('fsIcon').className = 'fas fa-expand';
+            }
+        }
+
+        // Toast
+        function toast(msg, type = '') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast show' + (type ? ' ' + type : '');
+            clearTimeout(t._t);
+            t._t = setTimeout(() => t.classList.remove('show'), 2000);
+        }
+
+        // 快捷键
+        document.addEventListener('keydown', e => {
+            if (e.target.matches('input, textarea')) return;
+            if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) { e.preventDefault(); undo(); }
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) { e.preventDefault(); redo(); }
+            if (e.key === 'Delete' || e.key === 'Backspace') { if (canvas.getActiveObject()) { e.preventDefault(); deleteObj(); }}
+            if ((e.ctrlKey || e.metaKey) && e.key === 'd') { e.preventDefault(); duplicateObj(); }
+            if (e.key === 'Escape') { closeTpl(); hidePanel(); closeSizeModal(); hideAdd(); setTool('hand'); canvas.discardActiveObject(); canvas.renderAll(); }
+            if ((e.ctrlKey || e.metaKey) && e.key === '0') { e.preventDefault(); fitToScreen(); }
+            if (e.key === 'v' || e.key === 'V') { setTool('select'); }
+            if (e.key === 'h' || e.key === 'H') { setTool('hand'); }
         });
 
-        setTimeout(() => { 
-            if (!document.getElementById('loadingScreen').classList.contains('hide')) { 
-                document.getElementById('loadingScreen').classList.add('hide'); 
-                fitToScreen(); 
-                if (canvas.getObjects().length === 0) applyTemplate('xhs-cover', 0); 
-            } 
-        }, 4000);
+        window.addEventListener('resize', fitToScreen);
+        document.addEventListener('click', e => { if (!e.target.closest('#dockAdd')) hideAdd(); });
 
-        console.log('🏔️ MONS V16');
+        // 初始化
+        renderScenes();
+        setTool('hand');
+
+        document.fonts.ready.then(() => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hide');
+                try {
+                    const sc = localStorage.getItem('mons_scene');
+                    if (sc && SCENES[sc]) {
+                        scene = sc;
+                        cW = SCENES[sc].w;
+                        cH = SCENES[sc].h;
+                        canvas.setDimensions({ width: cW, height: cH });
+                        renderScenes();
+                    }
+                    const draft = localStorage.getItem('mons_draft');
+                    if (draft) {
+                        canvas.loadFromJSON(draft, () => { canvas.renderAll(); fitToScreen(); });
+                    } else {
+                        applyTpl('xhs', 0);
+                    }
+                } catch(e) { applyTpl('xhs', 0); }
+            }, 400);
+        });
+
+        setTimeout(() => { document.getElementById('loading').classList.add('hide'); applyTpl('xhs', 0); }, 4000);
+
+        console.log(`🏔️ MONS ${CONFIG.version}`);
     </script>
 </body>
 </html>
