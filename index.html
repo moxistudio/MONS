@@ -16,36 +16,38 @@
     
     <style>
         :root {
-            /* 颜色系统 - 增强对比度和视觉层次 */
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #161616;
-            --bg-tertiary: #232323;
-            --bg-workspace: #1E1E1E;
-            --bg-card: rgba(22,22,22,0.98);
-            --bg-hover: rgba(255,255,255,0.06);
-            --bg-active: rgba(74,144,217,0.15);
+            /* 背景系统 - 纯黑白灰层次 */
+            --bg-primary: #000000;      /* 纯黑 */
+            --bg-secondary: #121212;     /* 深灰 */
+            --bg-tertiary: #1E1E1E;      /* 中深灰 */
+            --bg-workspace: #1A1A1A;     /* 工作区背景 */
+            --bg-card: rgba(20,20,20,0.98); /* 卡片背景 */
+            --bg-hover: rgba(255,255,255,0.08); /* 悬停背景 */
+            --bg-active: rgba(255,255,255,0.15); /* 激活背景 */
             
-            /* 边框系统 */
-            --border-subtle: rgba(255,255,255,0.10);
-            --border-medium: rgba(255,255,255,0.18);
-            --border-focused: #4A90D9;
+            /* 边框系统 - 灰度层次 */
+            --border-subtle: rgba(255,255,255,0.12); /* 细微边框 */
+            --border-medium: rgba(255,255,255,0.20); /* 中等边框 */
+            --border-focused: rgba(255,255,255,0.30); /* 聚焦边框 */
             
-            /* 文字系统 - 增强可读性 */
-            --text-primary: #FFFFFF;
-            --text-secondary: rgba(255,255,255,0.80);
-            --text-muted: rgba(255,255,255,0.55);
-            --text-disabled: rgba(255,255,255,0.30);
+            /* 文字系统 - 优化可读性 */
+            --text-primary: #FFFFFF;      /* 主文字 */
+            --text-secondary: rgba(255,255,255,0.85); /* 次要文字 */
+            --text-muted: rgba(255,255,255,0.60); /* 静音文字 */
+            --text-disabled: rgba(255,255,255,0.40); /* 禁用文字 */
             
-            /* 强调色系统 */
-            --accent: #4A90D9;
-            --accent-hover: #5BA0E9;
-            --accent-active: #3A80C9;
-            --success: #34C759;
-            --success-hover: #44D769;
-            --error: #FF3B30;
-            --error-hover: #FF4B40;
-            --warning: #FFCC00;
-            --warning-hover: #FFDC10;
+            /* 强调色系统 - 灰度强调 */
+            --accent: rgba(255,255,255,0.80); /* 主要强调色 */
+            --accent-hover: rgba(255,255,255,0.90); /* 悬停强调色 */
+            --accent-active: rgba(255,255,255,0.70); /* 激活强调色 */
+            
+            /* 状态颜色 - 灰度状态 */
+            --success: rgba(255,255,255,0.70); /* 成功状态 */
+            --success-hover: rgba(255,255,255,0.80); /* 成功悬停 */
+            --error: rgba(255,255,255,0.60); /* 错误状态 */
+            --error-hover: rgba(255,255,255,0.70); /* 错误悬停 */
+            --warning: rgba(255,255,255,0.50); /* 警告状态 */
+            --warning-hover: rgba(255,255,255,0.60); /* 警告悬停 */
             
             /* 尺寸系统 */
             --radius-sm: 10px;
